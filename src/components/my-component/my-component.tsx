@@ -1,10 +1,10 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, Watch, h } from '@stencil/core';
 import { format } from '../../utils/utils';
 
 @Component({
   tag: 'my-component',
   styleUrl: 'my-component.css',
-  shadow: true,
+  shadow: false,
 })
 export class MyComponent {
   /**
@@ -22,11 +22,23 @@ export class MyComponent {
    */
   @Prop() last: string;
 
+  @Prop({ mutable: true, reflect: true }) myValue = 'My Value';
+
+  @Watch('myValue')
+  myValueChangeHandler(newValue: string, oldValue: string) {
+    console.log('myValueChangeHandler', newValue, oldValue);
+  }
+
   private getText(): string {
     return format(this.first, this.middle, this.last);
   }
 
   render() {
-    return <div>Hello, World! I'm {this.getText()}</div>;
+    const myValue = this.myValue ? this.myValue : 'default';
+    return (
+      <div>
+        Hello, World! I'm {this.getText()} - {myValue}
+      </div>
+    );
   }
 }

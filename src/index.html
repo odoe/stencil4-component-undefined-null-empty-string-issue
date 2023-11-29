@@ -1,14 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html dir="ltr" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <title>Stencil Component Starter</title>
 
-    <script type="module" src="/build/my-comp.esm.js"></script>
-    <script nomodule src="/build/my-comp.js"></script>
-  </head>
-  <body>
-    <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Stencil Component Starter</title>
+
+  <script type="module" src="/build/my-comp.esm.js"></script>
+  <script nomodule src="/build/my-comp.js"></script>
+</head>
+
+<body>
+  <my-component my-value="hello" first="Stencil" last="'Don't call me a framework' JS"></my-component>
+  <script>
+    const myComp = document.querySelector('my-component');
+    setTimeout(() => {
+      console.log('set value');
+      myComp.myValue = ''; // sets attribute to ""
+      // myComp.myValue = undefined; // leaves attribute as-is
+      // myComp.myValue = null; // removes attribute
+    }, 5000);
+  </script>
+</body>
+
 </html>
