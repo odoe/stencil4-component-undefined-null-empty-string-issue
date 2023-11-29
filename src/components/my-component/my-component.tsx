@@ -22,7 +22,7 @@ export class MyComponent {
    */
   @Prop() last: string;
 
-  @Prop({ mutable: true, reflect: true }) myValue = 'My Value';
+  @Prop({ reflect: true }) myValue = 'My Value';
 
   @Watch('myValue')
   myValueChangeHandler(newValue: string, oldValue: string) {
